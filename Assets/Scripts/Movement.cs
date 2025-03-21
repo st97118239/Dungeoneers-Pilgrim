@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     public Vector3 camRotate;
     public float sensitivity;
 
-    void Update()
+    void FixedUpdate()
     {
         moveDir.x = Input.GetAxis("Horizontal");
         moveDir.z = Input.GetAxis("Vertical");
