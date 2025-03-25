@@ -19,7 +19,6 @@ public class NewMovement : MonoBehaviour
         // Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody>();
     }
-
     void FixedUpdate()
     {
         // Store user input as a movement vector (horizontal and vertical)
@@ -35,10 +34,12 @@ public class NewMovement : MonoBehaviour
 
         // Apply the movement vector to the Rigidbody using MovePosition
         m_Rigidbody.MovePosition(transform.position + moveDirection * Time.fixedDeltaTime * m_Speed);
-
+    }
+    void Update()
+    {
         // Handle rotation of the character based on the mouse input
-        rotateDir.y = Input.GetAxisRaw("Mouse X") * sensitivity * Time.fixedDeltaTime;
-        camRotate.x = -Input.GetAxisRaw("Mouse Y") * sensitivity * Time.fixedDeltaTime;
+        rotateDir.y = Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
+        camRotate.x = -Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
 
         // Apply horizontal rotation to the character (Yaw - left/right)
         yaw += rotateDir.y;
