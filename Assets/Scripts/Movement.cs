@@ -18,6 +18,9 @@ public class Movement : MonoBehaviour
     {
         // Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody>();
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     void FixedUpdate()
