@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1bf8a04dd45ca5c408662b5df14ad53d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.905
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1bf8a04dd45ca5c408662b5df14ad53d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.504
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1bf8a04dd45ca5c408662b5df14ad53d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.714403
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1bf8a04dd45ca5c408662b5df14ad53d,
         type: 3}
@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1bf8a04dd45ca5c408662b5df14ad53d,
         type: 3}
       propertyPath: m_Name
-      value: muntstapel1
+      value: CoinStackSmall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
