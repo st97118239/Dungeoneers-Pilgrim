@@ -12,6 +12,7 @@ public class RaycastDetection : MonoBehaviour
     public TMP_Text coinText;
     public TMP_Text pickUpPromptText;
     public TMP_Text openPromptText;
+    public Lantern lanternScript;
 
     private RaycastHit hit;
 
@@ -23,6 +24,7 @@ public class RaycastDetection : MonoBehaviour
             // Check if the hit object is a coin stack
             CoinStack coinStack = hit.collider.GetComponent<CoinStack>();
             ChestScript chest = hit.collider.GetComponent<ChestScript>();
+
             if (coinStack != null)
             {
                 print("Coin detected.");
@@ -53,12 +55,30 @@ public class RaycastDetection : MonoBehaviour
                 openPromptText.gameObject.SetActive(true);
 
                     // If the player presses "E" and the chest is not opened
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
                         // Open the chest
-                        chest.OpenChest();
-                        openPromptText.gameObject.SetActive(false); // Hide the prompt text after opening the chest
+                    chest.OpenChest();
+                    openPromptText.gameObject.SetActive(false);
+                }
+            }
+            else if (hit.collider.gameObject.layer == 8)
+            {
+                pickUpPromptText.gameObject.SetActive(true); // Show prompt text for picking up lantern
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    // Call function in PickupScript to set hasLantern to true
+                    if (lanternScript != null)
+                    {
+                        lanternScript.PickUpLantern();
+                        Destroy(hit.collider.gameObject);
                     }
+
+                    // Optionally destroy the lantern object after pickup
+                    Destroy(hit.collider.gameObject);
+                    pickUpPromptText.gameObject.SetActive(false);
+                }
             }
             else if (!hit.collider.CompareTag("Usable"))
             {
