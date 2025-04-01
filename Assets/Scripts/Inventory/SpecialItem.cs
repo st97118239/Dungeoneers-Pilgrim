@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpecialItem : Item
@@ -20,6 +19,7 @@ public class SpecialItem : Item
             item.transform.localPosition = item.GetComponent<LanternInHand>().coordsInHand;
             item.GetComponent<LanternInHand>().Light.GetComponent<Light>().intensity = item.GetComponent<LanternInHand>().intensityHand;
             item.GetComponent<LanternInHand>().Light.GetComponent<Light>().range = item.GetComponent<LanternInHand>().rangeHand;
+            player.GetComponent<Use>().newItem(item);
         }
     }
 
@@ -30,6 +30,7 @@ public class SpecialItem : Item
             item.transform.localPosition = item.GetComponent<LanternInHand>().coordsOnSide;
             item.GetComponent<LanternInHand>().Light.GetComponent<Light>().intensity = item.GetComponent<LanternInHand>().intensitySide;
             item.GetComponent<LanternInHand>().Light.GetComponent<Light>().range = item.GetComponent<LanternInHand>().rangeSide;
+            player.GetComponent<Use>().removeItem();
         }
     }
 }

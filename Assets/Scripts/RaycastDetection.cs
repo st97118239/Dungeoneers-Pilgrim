@@ -70,7 +70,7 @@ public class RaycastDetection : MonoBehaviour
                 {
                     lanternScript.PickUpLantern();
                     Destroy(hit.collider.gameObject);
-                    Inventory.PickupLantern(lanternScript.newLantern);
+                    Inventory.PickupLantern(lanternScript.lanternInHand);
                     pickUpPromptText.gameObject.SetActive(false);
                 }
             }

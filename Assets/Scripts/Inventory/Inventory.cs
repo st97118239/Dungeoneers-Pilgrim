@@ -11,13 +11,11 @@ public class Inventory : MonoBehaviour
 
     private Vector3 smallDistance = new(.5f, .5f, .5f);
 
-    // Start is called before the first frame update
     void Start()
     {
         ChangeSlot(0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))

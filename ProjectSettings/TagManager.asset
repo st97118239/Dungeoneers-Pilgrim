@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Usable
   - Lantern
+  - Weapon
   layers:
   - Default
   - TransparentFX
