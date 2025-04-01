@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +11,8 @@ public class RaycastDetection : MonoBehaviour
     public TMP_Text pickUpPromptText;
     public TMP_Text openPromptText;
     public Lantern lanternScript;
+
+    public Inventory Inventory;
 
     private RaycastHit hit;
 
@@ -54,10 +54,10 @@ public class RaycastDetection : MonoBehaviour
                 // Show the prompt text for opening the chest
                 openPromptText.gameObject.SetActive(true);
 
-                    // If the player presses "E" and the chest is not opened
+                // If the player presses "E" and the chest is not opened
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                        // Open the chest
+                    // Open the chest
                     chest.OpenChest();
                     openPromptText.gameObject.SetActive(false);
                 }
@@ -68,19 +68,17 @@ public class RaycastDetection : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    // Call function in PickupScript to set hasLantern to true
-                    if (lanternScript != null)
-                    {
-                        lanternScript.PickUpLantern();
-                        Destroy(hit.collider.gameObject);
-                    }
-
-                    // Optionally destroy the lantern object after pickup
+                    lanternScript.PickUpLantern();
                     Destroy(hit.collider.gameObject);
+                    Inventory.PickupLantern(lanternScript.newLantern);
                     pickUpPromptText.gameObject.SetActive(false);
                 }
             }
-            else if (!hit.collider.CompareTag("Usable"))
+            else if (hit.collider.gameObject.layer == 2) // Weapon
+            {
+                Inventory.PickupWeapon(hit.collider.gameObject);
+            }
+            else
             {
                 // Hide the prompt text if no relevant object is detected
                 pickUpPromptText.gameObject.SetActive(false);

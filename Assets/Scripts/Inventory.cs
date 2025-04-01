@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -8,6 +6,8 @@ public class Inventory : MonoBehaviour
 
     public Item CurrentSlot = null;
     [SerializeField] private int currentSlotIndex;
+
+    private const int LanternSlot = 2;
 
     private Vector3 smallDistance = new(.5f, .5f, .5f);
 
@@ -32,24 +32,6 @@ public class Inventory : MonoBehaviour
             ChangeSlot(currentSlotIndex + 1);
         else if (dir > 0f)
             ChangeSlot(currentSlotIndex - 1);
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            RaycastHit[] hits = Physics.BoxCastAll(transform.position, smallDistance, smallDistance, Quaternion.LookRotation(transform.forward), .5f);
-            foreach (RaycastHit hit in hits)
-            {
-                // if hit is a weapon and the currentslot is 1 or 2, pick it up
-                // if hit is a lantern and the currentslot is 2, pick it up
-
-                if ((hit.collider.CompareTag("weapon") && currentSlotIndex != 2) ||
-                    (hit.collider.CompareTag("lantern") && currentSlotIndex == 2))
-                {
-                    // Pickup weapon
-                    CurrentSlot.Pickup(hit.collider.gameObject);
-                    break;
-                }
-            }
-        }
     }
 
     private void ChangeSlot(int index)
@@ -62,5 +44,22 @@ public class Inventory : MonoBehaviour
         Items[index].IsSelected(true);
         currentSlotIndex = index;
         CurrentSlot = Items[currentSlotIndex];
+    }
+
+    public void PickupWeapon(GameObject gameObject)
+    {
+        if (currentSlotIndex == LanternSlot)
+            return;
+
+        CurrentSlot.Pickup(gameObject);
+        CurrentSlot.IsSelected(true);
+    }
+
+    public void PickupLantern(GameObject gameObject)
+    {
+        Items[LanternSlot].Pickup(gameObject);
+
+        if (currentSlotIndex == LanternSlot)
+            CurrentSlot.IsSelected(true);
     }
 }
