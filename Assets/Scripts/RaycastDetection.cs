@@ -25,6 +25,7 @@ public class RaycastDetection : MonoBehaviour
             ChestScript chest = hit.collider.GetComponent<ChestScript>();
             if (coinStack != null)
             {
+                print("Coin detected.");
                 // Show the prompt text for collecting coins
                 pickUpPromptText.gameObject.SetActive(true);
 
@@ -42,6 +43,7 @@ public class RaycastDetection : MonoBehaviour
 
                     // Hide the prompt text after collecting
                     pickUpPromptText.gameObject.SetActive(false);
+                    print("No coin detected.");
                 }
             }
             // Check if the hit object is a chest

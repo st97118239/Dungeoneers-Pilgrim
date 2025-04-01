@@ -168,8 +168,7 @@ GameObject:
   - component: {fileID: 7051622738315777533}
   - component: {fileID: 7337370873562714054}
   - component: {fileID: 4211566071725119817}
-  - component: {fileID: 3476447578250322573}
-  - component: {fileID: 7166755842852696166}
+  - component: {fileID: 3854902363629346044}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -296,7 +295,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &3476447578250322573
+--- !u!114 &3854902363629346044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -305,7 +304,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6031803155284754197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb88149df2283f242a2187c2ec390f78, type: 3}
+  m_Script: {fileID: 11500000, guid: d2de237733186c84fafc2fdf48602680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   raycastDistance: 5
@@ -313,24 +312,12 @@ MonoBehaviour:
   coinLayer:
     serializedVersion: 2
     m_Bits: 64
-  promptText: {fileID: 0}
---- !u!114 &7166755842852696166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6031803155284754197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c7fc89e28568546b9ba536d579f3db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastDistance: 5
   chestLayer:
     serializedVersion: 2
     m_Bits: 128
-  promptText: {fileID: 0}
+  coinText: {fileID: 0}
+  pickUpPromptText: {fileID: 0}
+  openPromptText: {fileID: 0}
 --- !u!1001 &1439395519348347104
 PrefabInstance:
   m_ObjectHideFlags: 0
