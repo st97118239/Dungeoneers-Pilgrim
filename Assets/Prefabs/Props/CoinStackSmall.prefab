@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinStackSmall
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1bf8a04dd45ca5c408662b5df14ad53d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76,6 +81,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2886946159781076649}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1bf8a04dd45ca5c408662b5df14ad53d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3294488911370135880}
   m_SourcePrefab: {fileID: 100100000, guid: 1bf8a04dd45ca5c408662b5df14ad53d, type: 3}
 --- !u!1 &1489048845782823213 stripped
 GameObject:
@@ -104,3 +113,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.910443, y: 2.8151069, z: 2.3513834}
   m_Center: {x: -0.10431421, y: 1.4260688, z: -0.018705368}
+--- !u!114 &3294488911370135880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489048845782823213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baca0ff29a026674784949d8d1d15b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinAmount: 5

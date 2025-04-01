@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1615009964196865822}
   - component: {fileID: 65645414650477692}
   - component: {fileID: 6637989198287865353}
+  - component: {fileID: 1791044078685081292}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,6 +157,23 @@ MonoBehaviour:
   sensitivity: 500
   lookSpeed: 2
   lookXLimit: 80
+--- !u!114 &1791044078685081292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3499303280785083413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb88149df2283f242a2187c2ec390f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDistance: 5
+  totalCoins: 0
+  coinLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6031803155284754197
 GameObject:
   m_ObjectHideFlags: 0

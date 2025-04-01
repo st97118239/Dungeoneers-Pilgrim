@@ -29,9 +29,9 @@ public class Inventory : MonoBehaviour
 
         var dir = Input.GetAxis("Mouse ScrollWheel");
         if (dir < 0f)
-            ChangeSlot(currentSlotIndex - 1);
-        else if (dir > 0f)
             ChangeSlot(currentSlotIndex + 1);
+        else if (dir > 0f)
+            ChangeSlot(currentSlotIndex - 1);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
