@@ -7,18 +7,19 @@ TagManager:
   - Usable
   - Lantern
   - Weapon
+  - Golem
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Environment
   - Water
   - UI
   - CoinStacks
   - Chests
   - Lantern
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

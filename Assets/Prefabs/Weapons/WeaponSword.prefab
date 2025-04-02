@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ef97588cdddec954a9cbe4c6cf4267d3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2775285
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ef97588cdddec954a9cbe4c6cf4267d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.955
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ef97588cdddec954a9cbe4c6cf4267d3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ef97588cdddec954a9cbe4c6cf4267d3,
         type: 3}
@@ -71,10 +71,35 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ef97588cdddec954a9cbe4c6cf4267d3,
         type: 3}
       propertyPath: m_Name
-      value: pilgrimzwaard
+      value: WeaponSword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ef97588cdddec954a9cbe4c6cf4267d3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4306241424455455267}
   m_SourcePrefab: {fileID: 100100000, guid: ef97588cdddec954a9cbe4c6cf4267d3, type: 3}
+--- !u!1 &2344752712779155960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ef97588cdddec954a9cbe4c6cf4267d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3191739296228373673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4306241424455455267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344752712779155960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11eafed3118b2964c825aab086b8707b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wpnType: 0
+  dmg: 2
+  atkspd: 1

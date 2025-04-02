@@ -14,6 +14,11 @@ public class Use : MonoBehaviour
                 print("attack");
             }
         }
+
+        if (hp <= 0)
+        {
+            print("dead");
+        }
     }
 
     public void newItem(GameObject item)
