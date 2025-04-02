@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
                 isDead = true;
                 deathScreen.SetActive(true);
                 menu.lockCursor = false;
+                menu.ResetCursor();
             }
         }
     }
