@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,35 +11,67 @@ public class Player : MonoBehaviour
     public GameObject selectedItem;
     public GameObject deathScreen;
     public Menu menu;
+    public Image attackProgressBar;
     public string itemTag;
     public bool isDead = false;
+
+    private float atkCooldown;
 
     void Start()
     {
         for (int i = 0; i < hearts.Count; i++)
         {
-            // Add heart to active hearts list based on how many hearts the player should start with
             if (i < hearts.Count)
             {
                 heartsActive.Add(hearts[i]);
             }
         }
+
+        attackProgressBar.fillAmount = 0f;
+        attackProgressBar.gameObject.SetActive(false);
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        atkCooldown -= Time.deltaTime;
+
+        if (atkCooldown < 0)
         {
-            if (itemTag == "Weapon")
+            atkCooldown = 0f;
+
+            if (Input.GetMouseButtonDown(0))
             {
-                print("attack");
+                if (selectedItem.CompareTag("Weapon"))
+                {
+                    Attack();
+                }
             }
+            attackProgressBar.gameObject.SetActive(false);
         }
+        else
+        {
+            attackProgressBar.gameObject.SetActive(true);
+            attackProgressBar.fillAmount = 1 - atkCooldown / selectedItem.GetComponent<Weapon>().atkspd;
+        }
+    }
+
+    private void Attack()
+    {
+        Weapon weaponTags = selectedItem.GetComponent<Weapon>();
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, weaponTags.atkRange, 1 << 10))
+        {
+            print("attack");
+            Enemy enemyHit = hit.collider.gameObject.GetComponent<Enemy>();
+            enemyHit.health -= weaponTags.dmg;
+        }
+
+        atkCooldown = weaponTags.atkspd;
     }
 
     public void NewItem(GameObject item)
     {
         selectedItem = item;
         itemTag = item.tag;
+        atkCooldown = selectedItem.GetComponent<Weapon>().atkspd;
     }
 
     public void RemoveItem()
@@ -52,11 +86,9 @@ public class Player : MonoBehaviour
         {
             GameObject lastHeart = heartsActive[^1];
 
-            // Set the sprite to "black.png" for the heart being removed
-            string imageName = "Sprites/HeartBlack";  // Always load the "black.png" sprite
+            string imageName = "Sprites/HeartBlack";
             Sprite image = Resources.Load<Sprite>(imageName);
 
-            // Get the Image component of the heart and set the sprite to black
             lastHeart.GetComponent<Image>().sprite = image;
 
             heartsActive.RemoveAt(heartsActive.Count - 1);
@@ -76,15 +108,12 @@ public class Player : MonoBehaviour
 
     public void AddHeart()
     {
-        if (heartsActive.Count < hearts.Count)  // Only add a heart if there are inactive hearts left
+        if (heartsActive.Count < hearts.Count)
         {
-            // Find the first inactive heart in `hearts` (one that is NOT in `heartsActive`)
             GameObject newHeart = hearts[heartsActive.Count];
 
-            // Add it back to the `heartsActive` list
             heartsActive.Add(newHeart);
 
-            // Set the sprite to "red.png" to make it visible again
             string imageName = "Sprites/HeartRed";
             Sprite image = Resources.Load<Sprite>(imageName);
             newHeart.GetComponent<Image>().sprite = image;
