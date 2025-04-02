@@ -169,10 +169,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   attackRange: 5
-  stopRange: 1.5
-  stopRangeContinue: 3
+  stopRange: 2.5
   fleeDistance: 5
+  stayCloseTo: 4
   isThrowing: 0
+  agent: {fileID: 0}
 --- !u!114 &6332085985319121290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6835442aa729e6f47bb41cdfba09c12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stonePrefab: {fileID: 501718941248486407, guid: 1248a10a1a508014dbc888421fe216f9,
+  stonePrefab: {fileID: 1471191727943487712, guid: 8e3d3fc9fec446f4ba1390de9eaabccf,
     type: 3}
   throwPoint: {fileID: 6790210649193149894}
   throwForce: 20

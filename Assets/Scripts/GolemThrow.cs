@@ -5,7 +5,8 @@ public class GolemThrow : MonoBehaviour
     public GameObject stonePrefab;
     public Transform throwPoint;
     public float throwForce = 10f;
-    public Vector3 offset = new Vector3(0f, 2f, 0f);
+    public Vector3 offset = new Vector3(0f, 1.5f, 0f);
+    public float yArch = 0.7f;
 
     private Enemy enemyScript;
     private GolemAI golemScript;
@@ -35,7 +36,7 @@ public class GolemThrow : MonoBehaviour
         GameObject stone = Instantiate(stonePrefab, throwPoint.position + offset, Quaternion.identity);
 
         Vector3 direction = (targetPosition - throwPoint.position).normalized;
-        direction.y += 0.7f;
+        direction.y += yArch;
 
         Rigidbody rb = stone.GetComponent<Rigidbody>();
         rb.velocity = direction * throwForce;

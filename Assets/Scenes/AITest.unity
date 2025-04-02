@@ -463,16 +463,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2085569547}
-    - target: {fileID: 5719577358762314617, guid: e1ad03f5c6c2a674c8add5922e5cb553,
-        type: 3}
-      propertyPath: stopRange
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5719577358762314617, guid: e1ad03f5c6c2a674c8add5922e5cb553,
-        type: 3}
-      propertyPath: fleeDistance
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6156557267984134012, guid: e1ad03f5c6c2a674c8add5922e5cb553,
         type: 3}
       propertyPath: m_Name

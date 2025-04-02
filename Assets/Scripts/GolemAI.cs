@@ -22,6 +22,12 @@ public class GolemAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        //if (distanceToPlayer > 15)
+        //{
+        //    agent.isStopped = true;
+        //}
+        //else if (distanceToPlayer < 15)
+
         if (distanceToPlayer <= stopRange && !isThrowing)
         {
             if (distanceToPlayer < fleeDistance)
