@@ -3,6 +3,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
@@ -50,7 +51,8 @@ public class Player : MonoBehaviour
         else
         {
             attackProgressBar.gameObject.SetActive(true);
-            attackProgressBar.fillAmount = 1 - atkCooldown / selectedItem.GetComponent<Weapon>().atkspd;
+            if (selectedItem != null && selectedItem.CompareTag("Weapon"))
+                attackProgressBar.fillAmount = 1 - atkCooldown / selectedItem.GetComponent<Weapon>().atkspd;
         }
     }
 
@@ -59,7 +61,6 @@ public class Player : MonoBehaviour
         Weapon weaponTags = selectedItem.GetComponent<Weapon>();
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, weaponTags.atkRange, 1 << 10))
         {
-            print("attack");
             Enemy enemyHit = hit.collider.gameObject.GetComponent<Enemy>();
             enemyHit.health -= weaponTags.dmg;
         }
@@ -71,7 +72,10 @@ public class Player : MonoBehaviour
     {
         selectedItem = item;
         itemTag = item.tag;
-        atkCooldown = selectedItem.GetComponent<Weapon>().atkspd;
+        if (selectedItem != null && item.CompareTag("Weapon"))
+        {
+            atkCooldown = selectedItem.GetComponent<Weapon>().atkspd;
+        }
     }
 
     public void RemoveItem()

@@ -4,8 +4,6 @@ public class SpecialItem : Item
 {
     public override void Pickup(GameObject itemToPickup)
     {
-        if (item != null) return;
-
         if (!itemToPickup.CompareTag("Lantern"))
             return;
 

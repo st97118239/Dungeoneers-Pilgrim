@@ -73,8 +73,64 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponScythe
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 556819cd4b93db344af8ef09aa61df96,
+        type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 556819cd4b93db344af8ef09aa61df96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1600010399384626687}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 556819cd4b93db344af8ef09aa61df96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2913666342137608328}
   m_SourcePrefab: {fileID: 100100000, guid: 556819cd4b93db344af8ef09aa61df96, type: 3}
+--- !u!1 &6110262698923912336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 556819cd4b93db344af8ef09aa61df96,
+    type: 3}
+  m_PrefabInstance: {fileID: 6344844397458280897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1600010399384626687
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110262698923912336}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0849254, y: 1.9972458, z: 1.0003778}
+  m_Center: {x: -0.000000012550633, y: 0.42112938, z: -0.33669373}
+--- !u!114 &2913666342137608328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110262698923912336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11eafed3118b2964c825aab086b8707b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wpnType: 3
+  dmg: 5
+  atkspd: 0.9
+  atkRange: 2
