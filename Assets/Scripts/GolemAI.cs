@@ -8,6 +8,7 @@ public class GolemAI : MonoBehaviour
     public float stopRange = 2.5f;  // The range at which the golem should stop and start to flee
     public float fleeDistance = 5f;  // The range the golem will try to keep from the player
     public float stayCloseTo = 4f;
+    public bool isActive = false;
     public bool isThrowing = false;
     public NavMeshAgent agent;
     
@@ -22,61 +23,37 @@ public class GolemAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        //if (distanceToPlayer > 15)
-        //{
-        //    agent.isStopped = true;
-        //}
-        //else if (distanceToPlayer < 15)
+        if (distanceToPlayer >= 15 && isActive)
+        {
+            agent.isStopped = true;
+            isActive = false;
+        }
+        else if (distanceToPlayer < 15)
+        {
+            isActive = true;
+        }
 
-        if (distanceToPlayer <= stopRange && !isThrowing)
+        if (isActive)
         {
-            if (distanceToPlayer < fleeDistance)
+            if (distanceToPlayer <= stopRange && !isThrowing)
             {
-                Flee(distanceToPlayer);
+                if (distanceToPlayer < fleeDistance)
+                {
+                    Flee(distanceToPlayer);
+                }
             }
-        }
-        else if (distanceToPlayer > attackRange)
-        {
-            MoveTowardsPlayer(distanceToPlayer);
-        }
-        else if (distanceToPlayer >= stopRange && distanceToPlayer <= attackRange && !isFleeing && !isThrowing)
-        {
-            ThrowStone();
-        }
+            else if (distanceToPlayer > attackRange)
+            {
+                MoveTowardsPlayer(distanceToPlayer);
+            }
+            else if (distanceToPlayer >= stopRange && distanceToPlayer <= attackRange && !isFleeing && !isThrowing)
+            {
+                ThrowStone();
+            }
 
             // Rotate the golem to always face the player
             RotateTowardsPlayer();
-
-        //// If the golem is within attack range and not already throwing or fleeing
-        //if (distanceToPlayer <= attackRange && !isThrowing && !isFleeing)
-        //{
-        //    print("throw");
-        //    ThrowStone();
-        //}
-
-        //// If the golem is too close to the player (within stop range)
-        //if (distanceToPlayer <= stopRange)
-        //{
-        //    // Start fleeing if it's within stop range but keep the flee distance in check
-        //    print("flee");
-        //    StayBetweenRanges(distanceToPlayer);
-        //}
-        //// If the golem is farther than stop range and still within flee range
-        //else if (distanceToPlayer > stopRange && distanceToPlayer < fleeDistance)
-        //{
-        //    // Move towards the player to stay within the flee range
-        //    MoveTowardsPlayer();
-        //}
-        //else
-        //{
-        //    // If the golem is outside the flee range, move towards the player
-        //    isFleeing = false;
-        //    if (!isThrowing)
-        //    {
-        //        agent.isStopped = false;
-        //        agent.SetDestination(player.position);
-        //    }
-        //}
+        }
     }
 
     void Flee(float distanceToPlayer)
