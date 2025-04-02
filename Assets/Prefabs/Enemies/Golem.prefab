@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6464224943706553300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630579702293489968}
+  m_Layer: 10
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630579702293489968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6464224943706553300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0.616}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6790210649193149894}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6462971020013081133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,7 +103,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: a369992fa2e9ea74ba23c25835f0e4db, type: 2}
+      objectReference: {fileID: 2100000, guid: c354c7eebb97b9a4ca9bd0901b573ce4, type: 2}
     - target: {fileID: 919132149155446097, guid: 8d929edfcb73b7f45a9ef88ed630f3bc,
         type: 3}
       propertyPath: m_Name
@@ -90,7 +121,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8d929edfcb73b7f45a9ef88ed630f3bc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1630579702293489968}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d929edfcb73b7f45a9ef88ed630f3bc,
         type: 3}
@@ -172,6 +207,7 @@ MonoBehaviour:
   stopRange: 2.5
   fleeDistance: 5
   stayCloseTo: 4
+  isActive: 0
   isThrowing: 0
   agent: {fileID: 0}
 --- !u!114 &6332085985319121290
@@ -188,9 +224,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stonePrefab: {fileID: 1471191727943487712, guid: 8e3d3fc9fec446f4ba1390de9eaabccf,
     type: 3}
-  throwPoint: {fileID: 6790210649193149894}
+  throwPoint: {fileID: 1630579702293489968}
   throwForce: 20
-  offset: {x: 0, y: 2, z: 0}
+  offset: {x: 0, y: 0, z: 0}
+  yArch: 0.7
 --- !u!65 &7902061355558056672
 BoxCollider:
   m_ObjectHideFlags: 0
