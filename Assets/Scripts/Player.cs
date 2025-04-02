@@ -7,7 +7,10 @@ public class Player : MonoBehaviour
     public List<GameObject> hearts = new List<GameObject>();
     public List<GameObject> heartsActive = new List<GameObject>();
     public GameObject selectedItem;
+    public GameObject deathScreen;
+    public Menu menu;
     public string itemTag;
+    public bool isDead = false;
 
     void Start()
     {
@@ -63,6 +66,9 @@ public class Player : MonoBehaviour
             if (heartsActive.Count == 0)
             {
                 print("Player is dead!");
+                isDead = true;
+                deathScreen.SetActive(true);
+                menu.lockCursor = false;
             }
         }
     }

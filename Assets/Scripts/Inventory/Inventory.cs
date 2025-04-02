@@ -3,7 +3,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public Item[] Items = new Item[3];
-
+    public Player player;
     public Item CurrentSlot = null;
     [SerializeField] private int currentSlotIndex;
 
@@ -16,18 +16,21 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            ChangeSlot(0);
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            ChangeSlot(1);
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            ChangeSlot(2);
+        if (!player.isDead)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                ChangeSlot(0);
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+                ChangeSlot(1);
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+                ChangeSlot(2);
 
-        var dir = Input.GetAxis("Mouse ScrollWheel");
-        if (dir < 0f)
-            ChangeSlot(currentSlotIndex + 1);
-        else if (dir > 0f)
-            ChangeSlot(currentSlotIndex - 1);
+            var dir = Input.GetAxis("Mouse ScrollWheel");
+            if (dir < 0f)
+                ChangeSlot(currentSlotIndex + 1);
+            else if (dir > 0f)
+                ChangeSlot(currentSlotIndex - 1);
+        }
     }
 
     private void ChangeSlot(int index)

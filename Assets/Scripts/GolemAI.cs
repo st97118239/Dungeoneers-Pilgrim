@@ -23,12 +23,12 @@ public class GolemAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer >= 15 && isActive)
+        if (distanceToPlayer >= 15 && isActive || player.GetComponent<Player>().isDead)
         {
             agent.isStopped = true;
             isActive = false;
         }
-        else if (distanceToPlayer < 15)
+        else if (distanceToPlayer < 15 && !player.GetComponent<Player>().isDead)
         {
             isActive = true;
         }
