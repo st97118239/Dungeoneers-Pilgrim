@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Stone : MonoBehaviour
 {
-    [SerializeField] private Use player;
+    [SerializeField] private Player player;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player = collision.gameObject.GetComponent<Use>();
-            if (player.hp > 0)
+            player = collision.gameObject.GetComponent<Player>();
+            if (player.heartsActive.Count > 0)
             {
-                player.hp--;
+                player.RemoveHeart();
             }
         }
         else if (!collision.gameObject.CompareTag("Golem"))

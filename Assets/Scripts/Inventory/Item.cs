@@ -22,7 +22,7 @@ public abstract class Item : MonoBehaviour
 
     public virtual void IsSelected(bool isSelected)
     {
-        string imageName = string.Format("Sprites/{0}", isSelected ? "red" : "black");
+        string imageName = string.Format("Sprites/{0}", isSelected ? "InventoryRed" : "InventoryBlack");
         Sprite image = Resources.Load<Sprite>(imageName);
         GetComponent<Image>().sprite = image;
 
@@ -37,9 +37,8 @@ public abstract class Item : MonoBehaviour
         if (item != null)
         {
             item.SetActive(true);
-            player.GetComponent<Use>().newItem(item);
+            player.GetComponent<Player>().NewItem(item);
         }
-        
     }
 
     public virtual void RemoveItemFromHand()
@@ -47,7 +46,7 @@ public abstract class Item : MonoBehaviour
         if (item != null)
         {
             item.SetActive(false);
-            player.GetComponent<Use>().removeItem();
+            player.GetComponent<Player>().RemoveItem();
         }
     }
 }

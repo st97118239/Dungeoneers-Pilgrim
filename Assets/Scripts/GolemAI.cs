@@ -39,7 +39,7 @@ public class GolemAI : MonoBehaviour
             {
                 if (distanceToPlayer < fleeDistance)
                 {
-                    Flee(distanceToPlayer);
+                    Flee();
                 }
             }
             else if (distanceToPlayer > attackRange)
@@ -56,7 +56,7 @@ public class GolemAI : MonoBehaviour
         }
     }
 
-    void Flee(float distanceToPlayer)
+    void Flee()
     {
         isFleeing = true;
 

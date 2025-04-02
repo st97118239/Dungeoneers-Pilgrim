@@ -9,8 +9,6 @@ public class Inventory : MonoBehaviour
 
     private const int LanternSlot = 2;
 
-    private Vector3 smallDistance = new(.5f, .5f, .5f);
-
     void Start()
     {
         ChangeSlot(0);
