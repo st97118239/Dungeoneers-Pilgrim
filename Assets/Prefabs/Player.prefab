@@ -155,8 +155,7 @@ MonoBehaviour:
   rotateDir: {x: 0, y: 0, z: 0}
   cam: {fileID: 2514707088835913437}
   camRotate: {x: 0, y: 0, z: 0}
-  sensitivity: 500
-  lookSpeed: 2
+  sensitivity: 3
   lookXLimit: 80
 --- !u!114 &2631753479147815252
 MonoBehaviour:
@@ -184,9 +183,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6192d4b8e336e8e439a84f97f6224a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
+  hearts: []
+  heartsActive: []
   selectedItem: {fileID: 0}
+  deathScreen: {fileID: 0}
+  coinText: {fileID: 0}
+  menu: {fileID: 0}
+  attackProgressBar: {fileID: 0}
   itemTag: 
+  isPaused: 0
+  isDead: 0
+  totalCoins: 0
+  atkCooldown: 0
+  checkpoint: 0
 --- !u!1 &6031803155284754197
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,18 +349,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastDistance: 2
-  totalCoins: 0
   coinLayer:
     serializedVersion: 2
     m_Bits: 64
   chestLayer:
     serializedVersion: 2
     m_Bits: 128
-  coinText: {fileID: 0}
   pickUpPromptText: {fileID: 0}
   openPromptText: {fileID: 0}
   lanternScript: {fileID: 2631753479147815252}
-  Inventory: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1001 &4234034135775576861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -438,6 +445,11 @@ PrefabInstance:
     - target: {fileID: 3153061282088063810, guid: 0370686f4c1a1844a960b856e4e2d96c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788268838902517387, guid: 0370686f4c1a1844a960b856e4e2d96c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

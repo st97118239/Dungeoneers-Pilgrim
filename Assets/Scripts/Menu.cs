@@ -23,7 +23,7 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!pauseMenu.activeSelf)
+            if (!pauseMenu.activeSelf && !player.isDead)
             {
                 PauseMenu();
             }

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Image attackProgressBar;
     public string itemTag;
     public bool isPaused = false;
+    public bool isDead = false;
     public int totalCoins = 0;
     public float atkCooldown;
     public Checkpoints checkpoint;
@@ -101,10 +102,12 @@ public class Player : MonoBehaviour
 
             print("Lost a heart! Remaining hearts: " + heartsActive.Count);
 
-            if (heartsActive.Count == 0)
+            if (heartsActive.Count <= 0)
             {
                 print("Player is dead!");
+                menu.ContinueButton();
                 isPaused = true;
+                isDead = true;
                 deathScreen.SetActive(true);
                 menu.lockCursor = false;
                 menu.ResetCursor();

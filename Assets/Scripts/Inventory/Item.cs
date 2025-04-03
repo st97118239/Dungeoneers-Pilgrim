@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public abstract class Item : MonoBehaviour
 {
-    [SerializeField] protected GameObject item;
+    [SerializeField] protected GameObject item; // item in de slot
     public GameObject player;
-    public GameObject droppedWeapons;
+    public GameObject droppedWeapons; // Empty GameObject waar wapens die gedropped worden heen gaan
 
     private Camera mainCamera;
 
@@ -15,53 +15,53 @@ public abstract class Item : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    // functie voor object oppakken
     public virtual void Pickup(GameObject itemToPickup)
     {
-        RemoveItemFromHand();
+        RemoveItemFromHand(); // deselecteer item
 
         if (item != null)
         {
-            DropItem(item);
+            DropItem(item); // item die nu vast wordt gehouden droppen
         }
 
         item = itemToPickup;
 
-        string imageName = string.Format("Sprites/Items/{0}", itemToPickup.name);
+        string imageName = string.Format("Sprites/Items/{0}", itemToPickup.name); // sprite voor item slot zoeken
         Debug.Log(imageName);
-        Sprite image = Resources.Load<Sprite>(imageName);
+        Sprite image = Resources.Load<Sprite>(imageName); // item slot sprite laden
 
-        Image x = GetComponentsInChildren<Image>().Where(i => i.gameObject != gameObject).First();
-        x.sprite = image;
-        x.color = Color.white;
+        Image x = GetComponentsInChildren<Image>().Where(i => i.gameObject != gameObject).First(); // item slot met de sprite zoeken
+        x.sprite = image; // sprite veranderen
+        x.color = Color.white; // kleur naar wit veranderen zodat de sprite zichtbaar wordt
 
-        if (TryGetComponent<Weapon>(out var itemSlotWeaponStats))
+        // kijken of het item een wapen is
+        if (TryGetComponent<Weapon>(out Weapon itemSlotWeapon))
         {
-            itemSlotWeaponStats.wpnType = item.GetComponent<Weapon>().wpnType;
-            itemSlotWeaponStats.dmg = item.GetComponent<Weapon>().dmg;
-            itemSlotWeaponStats.atkspd = item.GetComponent<Weapon>().atkspd;
-            itemSlotWeaponStats.atkRange = item.GetComponent<Weapon>().atkRange;
+            itemSlotWeapon = item.GetComponent<Weapon>();
 
-            item.transform.SetParent(mainCamera.transform);
+            item.transform.SetParent(mainCamera.transform); // zet wapen in camera zodat het wapen meebeweegt met de speler
 
-            item.transform.SetLocalPositionAndRotation(DefaultWeaponLocations.GetPosition(itemSlotWeaponStats.wpnType), DefaultWeaponLocations.GetRotation(itemSlotWeaponStats.wpnType));
-            item.transform.localScale = Vector3.one;
+            item.transform.SetLocalPositionAndRotation(DefaultWeaponLocations.GetPosition(itemSlotWeapon.wpnType), DefaultWeaponLocations.GetRotation(itemSlotWeapon.wpnType)); // zet wapen positie goed
+            item.transform.localScale = Vector3.one; // reset scale van wapen anders wordt de scale 1.6
 
-            item.GetComponent<BoxCollider>().enabled = false;
+            item.GetComponent<BoxCollider>().enabled = false; // box collider uit zodat het niet tegen muren botst
         }        
     }
 
     public virtual void IsSelected(bool isSelected)
     {
-        string imageName = string.Format("Sprites/{0}", isSelected ? "InventoryRed" : "InventoryBlack");
-        Sprite image = Resources.Load<Sprite>(imageName);
-        GetComponent<Image>().sprite = image;
+        string imageName = string.Format("Sprites/{0}", isSelected ? "InventoryRed" : "InventoryBlack"); // inventory slot sprite zoeken
+        Sprite image = Resources.Load<Sprite>(imageName); // inventory slot sprite laden
+        GetComponent<Image>().sprite = image; // inventory slot sprite in de slot zetten
 
-        if (isSelected)
+        if (isSelected) // check of item in hand moet of niet
             ShowItemInHand();
         else
             RemoveItemFromHand();
     }
 
+    // functie voor item selecteren
     public virtual void ShowItemInHand()
     {
         if (item != null)
@@ -71,6 +71,7 @@ public abstract class Item : MonoBehaviour
         }
     }
 
+    // functie voor item deselecteren
     public virtual void RemoveItemFromHand()
     {
         if (item != null)
@@ -80,6 +81,7 @@ public abstract class Item : MonoBehaviour
         }
     }
 
+    // functie voor item droppen
     public virtual void DropItem(GameObject itemToDrop)
     {
         itemToDrop.transform.localPosition = new Vector3(0f, 0f, 1f);
