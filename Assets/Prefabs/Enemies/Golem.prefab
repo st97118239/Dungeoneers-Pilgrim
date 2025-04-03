@@ -208,7 +208,7 @@ MonoBehaviour:
   stopRange: 2.5
   fleeDistance: 5
   stayCloseTo: 4
-  playerDetectionRange: 15
+  playerDetectionRange: 10
   isActive: 0
   isThrowing: 0
   agent: {fileID: 0}
