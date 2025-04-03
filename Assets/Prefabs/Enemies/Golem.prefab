@@ -188,8 +188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef6d79eb974afa45a7d1ef6b7dd43bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 1
   health: 10
   atkspd: 1
+  coinAmount: 5
 --- !u!114 &5719577358762314617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,11 +204,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a9cb0275b4f8d49847f93bfcd8be77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   attackRange: 5
   stopRange: 2.5
   fleeDistance: 5
   stayCloseTo: 4
+  playerDetectionRange: 15
   isActive: 0
   isThrowing: 0
   agent: {fileID: 0}

@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
@@ -11,10 +9,12 @@ public class Player : MonoBehaviour
     public List<GameObject> heartsActive = new List<GameObject>();
     public GameObject selectedItem;
     public GameObject deathScreen;
+    public TMP_Text coinText;
     public Menu menu;
     public Image attackProgressBar;
     public string itemTag;
     public bool isDead = false;
+    public int totalCoins = 0;
 
     private float atkCooldown;
 
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (selectedItem.CompareTag("Weapon"))
+                if (selectedItem != null && selectedItem.CompareTag("Weapon"))
                 {
                     Attack();
                 }
@@ -124,5 +124,13 @@ public class Player : MonoBehaviour
 
             print("Gained a heart! Active hearts: " + heartsActive.Count);
         }
+    }
+
+    public void AddCoins(int coinAmountToAdd)
+    {
+        totalCoins += coinAmountToAdd;
+        coinText.text = "" + totalCoins;
+        Debug.Log("Coins collected: " + coinAmountToAdd);
+        Debug.Log("Total coins: " + totalCoins);
     }
 }

@@ -137,5 +137,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wpnType: 2
   dmg: 7.5
-  atkspd: 5
+  atkspd: 3
   atkRange: 2

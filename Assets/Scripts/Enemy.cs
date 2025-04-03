@@ -6,13 +6,20 @@ public class Enemy : MonoBehaviour
     public float health;
     public float atkspd;
     public int coinAmount;
-    public RaycastDetection playerCam;
+
+    private Player player;
+
+    void Start()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        player = playerObject.GetComponent<Player>();
+    }
 
     void Update()
     {
         if (health <= 0)
         {
-            playerCam.totalCoins += coinAmount;
+            player.AddCoins(coinAmount);
             Destroy(gameObject);
         }
     }

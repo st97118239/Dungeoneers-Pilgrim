@@ -4,17 +4,20 @@ using UnityEngine;
 public class RaycastDetection : MonoBehaviour
 {
     public float raycastDistance = 5f;
-    public int totalCoins = 0;
     public LayerMask coinLayer;
     public LayerMask chestLayer;
-    public TMP_Text coinText;
     public TMP_Text pickUpPromptText;
     public TMP_Text openPromptText;
     public Lantern lanternScript;
+    public Inventory inventory;
 
-    public Inventory Inventory;
-
+    private Player player;
     private RaycastHit hit;
+
+    void Start()
+    {
+        player = GetComponentInParent<Player>();
+    }
 
     void Update()
     {
@@ -29,10 +32,7 @@ public class RaycastDetection : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    totalCoins += coinStack.GetCoinAmount();
-                    coinText.text = "" + totalCoins;
-                    Debug.Log("Coins collected: " + coinStack.GetCoinAmount());
-                    Debug.Log("Total coins: " + totalCoins);
+                    player.AddCoins(coinStack.GetCoinAmount());
 
                     Destroy(hit.collider.gameObject);
 
@@ -57,7 +57,7 @@ public class RaycastDetection : MonoBehaviour
                 {
                     lanternScript.PickUpLantern();
                     Destroy(hit.collider.gameObject);
-                    Inventory.PickupLantern(lanternScript.lanternInHand);
+                    inventory.PickupLantern(lanternScript.lanternInHand);
                     pickUpPromptText.gameObject.SetActive(false);
                 }
             }
@@ -67,7 +67,7 @@ public class RaycastDetection : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Inventory.PickupWeapon(hit.collider.gameObject);
+                    inventory.PickupWeapon(hit.collider.gameObject);
                     pickUpPromptText.gameObject.SetActive(false);
                 }
             }

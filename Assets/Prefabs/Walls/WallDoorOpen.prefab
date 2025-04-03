@@ -83,6 +83,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallDoorOpen
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df9b14da51779c547a349a199a39eeea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df9b14da51779c547a349a199a39eeea,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152309730722582662, guid: df9b14da51779c547a349a199a39eeea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152309730722582662, guid: df9b14da51779c547a349a199a39eeea,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845128719697160597, guid: df9b14da51779c547a349a199a39eeea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845128719697160597, guid: df9b14da51779c547a349a199a39eeea,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2845496256800641121, guid: df9b14da51779c547a349a199a39eeea,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -230,6 +260,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arch1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6989856501500763471, guid: 2efe8ffa575c9484d96b9463f3fb256a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989856501500763471, guid: 2efe8ffa575c9484d96b9463f3fb256a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7659257204412254197, guid: 2efe8ffa575c9484d96b9463f3fb256a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -303,6 +343,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arch1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989856501500763471, guid: 2efe8ffa575c9484d96b9463f3fb256a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989856501500763471, guid: 2efe8ffa575c9484d96b9463f3fb256a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7659257204412254197, guid: 2efe8ffa575c9484d96b9463f3fb256a,
         type: 3}
@@ -378,6 +428,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillar (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2636975469529198075, guid: a3d1b549ae30c4147ac0dfd16b8d39b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2636975469529198075, guid: a3d1b549ae30c4147ac0dfd16b8d39b0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3446304415404046145, guid: a3d1b549ae30c4147ac0dfd16b8d39b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -451,6 +511,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pillar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2636975469529198075, guid: a3d1b549ae30c4147ac0dfd16b8d39b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2636975469529198075, guid: a3d1b549ae30c4147ac0dfd16b8d39b0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3446304415404046145, guid: a3d1b549ae30c4147ac0dfd16b8d39b0,
         type: 3}
