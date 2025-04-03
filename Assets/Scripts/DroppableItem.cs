@@ -6,9 +6,12 @@ public class DroppableItem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 3 && isDropped)
+        if (collision.gameObject.layer == 3 || collision.gameObject.layer == 7)
         {
-            Destroy(GetComponent<Rigidbody>());
+            if (isDropped)
+            {
+                 Destroy(GetComponent<Rigidbody>());
+            }
         }
     }
 }
