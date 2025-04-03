@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public List<GameObject> hearts = new List<GameObject>();
-    public List<GameObject> heartsActive = new List<GameObject>();
+    public List<GameObject> hearts = new();
+    public List<GameObject> heartsActive = new();
     public GameObject selectedItem;
     public GameObject deathScreen;
     public TMP_Text coinText;
@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
     public string itemTag;
     public bool isDead = false;
     public int totalCoins = 0;
-
-    private float atkCooldown;
-
+    public float atkCooldown;
+    public Checkpoints checkpoint;
+   
     void Start()
     {
         for (int i = 0; i < hearts.Count; i++)
@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
                 heartsActive.Add(hearts[i]);
             }
         }
+
+        transform.SetLocalPositionAndRotation(CheckpointLocations.GetPosition(checkpoint), CheckpointLocations.GetRotation(checkpoint));
 
         attackProgressBar.fillAmount = 0f;
         attackProgressBar.gameObject.SetActive(false);

@@ -9,12 +9,10 @@ public class Movement : MonoBehaviour
     public Transform cam;
     public Vector3 camRotate;
     public float sensitivity = 100f;
-    public float lookSpeed = 2.0f;
     public float lookXLimit = 80.0f;
 
     // Store the yaw and pitch separately to avoid issues with Euler angles
     private float pitch = 0f;
-    private float yaw = 0f;
     private Player player;
 
     void Start()
@@ -49,11 +47,8 @@ public class Movement : MonoBehaviour
         if (!player.isDead)
         {
             // Handle rotation of the character based on the mouse input
-            rotateDir.y = Input.GetAxisRaw("Mouse X") * lookSpeed; // * Time.deltaTime;
-            camRotate.x = -Input.GetAxisRaw("Mouse Y") * lookSpeed; // * Time.deltaTime;
-
-            // Apply horizontal rotation to the character (Yaw - left/right)
-            yaw += rotateDir.y;
+            rotateDir.y = Input.GetAxisRaw("Mouse X") * sensitivity; // * Time.deltaTime;
+            camRotate.x = -Input.GetAxisRaw("Mouse Y") * sensitivity; // * Time.deltaTime;
 
             // Apply vertical rotation to the camera (Pitch - up/down)
             // We limit the camera's vertical rotation to avoid flipping
@@ -64,7 +59,7 @@ public class Movement : MonoBehaviour
 
             // Apply vertical rotation to the camera (Pitch - up/down rotation)
             // Use Quaternion.Euler to directly set pitch and yaw
-            cam.localRotation = Quaternion.Euler(pitch, yaw, 0);
+            cam.localRotation = Quaternion.Euler(pitch, 0, 0);
         }
     }
 }

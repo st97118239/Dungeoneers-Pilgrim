@@ -6,6 +6,7 @@ public abstract class Item : MonoBehaviour
 {
     [SerializeField] protected GameObject item;
     public GameObject player;
+    public GameObject droppedWeapons;
 
     private Camera mainCamera;
 
@@ -18,6 +19,11 @@ public abstract class Item : MonoBehaviour
     {
         RemoveItemFromHand();
 
+        if (item != null)
+        {
+            DropItem(item);
+        }
+
         item = itemToPickup;
 
         string imageName = string.Format("Sprites/Items/{0}", itemToPickup.name);
@@ -28,9 +34,7 @@ public abstract class Item : MonoBehaviour
         x.sprite = image;
         x.color = Color.white;
 
-        Weapon itemSlotWeaponStats = GetComponent<Weapon>();
-
-        if (itemSlotWeaponStats != null)
+        if (TryGetComponent<Weapon>(out var itemSlotWeaponStats))
         {
             itemSlotWeaponStats.wpnType = item.GetComponent<Weapon>().wpnType;
             itemSlotWeaponStats.dmg = item.GetComponent<Weapon>().dmg;
@@ -39,8 +43,7 @@ public abstract class Item : MonoBehaviour
 
             item.transform.SetParent(mainCamera.transform);
 
-            item.transform.localPosition = DefaultWeaponLocations.GetPosition(itemSlotWeaponStats.wpnType);
-            item.transform.localRotation = DefaultWeaponLocations.GetRotation(itemSlotWeaponStats.wpnType);
+            item.transform.SetLocalPositionAndRotation(DefaultWeaponLocations.GetPosition(itemSlotWeaponStats.wpnType), DefaultWeaponLocations.GetRotation(itemSlotWeaponStats.wpnType));
             item.transform.localScale = Vector3.one;
 
             item.GetComponent<BoxCollider>().enabled = false;
@@ -52,8 +55,6 @@ public abstract class Item : MonoBehaviour
         string imageName = string.Format("Sprites/{0}", isSelected ? "InventoryRed" : "InventoryBlack");
         Sprite image = Resources.Load<Sprite>(imageName);
         GetComponent<Image>().sprite = image;
-
-        //Debug.Log(item.transform.rotation.w);
 
         if (isSelected)
             ShowItemInHand();
@@ -77,5 +78,15 @@ public abstract class Item : MonoBehaviour
             item.SetActive(false);
             player.GetComponent<Player>().RemoveItem();
         }
+    }
+
+    public virtual void DropItem(GameObject itemToDrop)
+    {
+        itemToDrop.transform.localPosition = new Vector3(0f, 0f, 1f);
+        itemToDrop.transform.SetParent(droppedWeapons.transform);
+        itemToDrop.GetComponent<DroppableItem>().isDropped = true;
+        itemToDrop.SetActive(true);
+        itemToDrop.GetComponent<BoxCollider>().enabled = true;
+        itemToDrop.AddComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 }

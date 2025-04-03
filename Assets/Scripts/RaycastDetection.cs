@@ -65,7 +65,7 @@ public class RaycastDetection : MonoBehaviour
             {
                 pickUpPromptText.gameObject.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && player.atkCooldown <= 0)
                 {
                     inventory.PickupWeapon(hit.collider.gameObject);
                     pickUpPromptText.gameObject.SetActive(false);
