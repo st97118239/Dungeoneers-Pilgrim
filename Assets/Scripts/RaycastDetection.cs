@@ -53,11 +53,10 @@ public class RaycastDetection : MonoBehaviour
             {
                 pickUpPromptText.gameObject.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && inventory.PickupLantern(lanternScript.lanternInHand))
                 {
                     lanternScript.PickUpLantern();
                     Destroy(hit.collider.gameObject);
-                    inventory.PickupLantern(lanternScript.lanternInHand);
                     pickUpPromptText.gameObject.SetActive(false);
                 }
             }

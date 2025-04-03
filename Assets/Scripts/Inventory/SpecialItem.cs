@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class SpecialItem : Item
 {
+    protected override string BorderSelected => "InventoryRed";
+
+    protected override string BorderUnselected => "InventoryBlue";
+
     public override void Pickup(GameObject itemToPickup)
     {
         if (!itemToPickup.CompareTag("Lantern"))

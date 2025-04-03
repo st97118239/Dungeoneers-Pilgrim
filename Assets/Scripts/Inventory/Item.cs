@@ -10,6 +10,9 @@ public abstract class Item : MonoBehaviour
 
     private Camera mainCamera;
 
+    protected abstract string BorderSelected { get; }
+    protected abstract string BorderUnselected { get; }
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -28,7 +31,6 @@ public abstract class Item : MonoBehaviour
         item = itemToPickup;
 
         string imageName = string.Format("Sprites/Items/{0}", itemToPickup.name); // sprite voor item slot zoeken
-        Debug.Log(imageName);
         Sprite image = Resources.Load<Sprite>(imageName); // item slot sprite laden
 
         Image x = GetComponentsInChildren<Image>().Where(i => i.gameObject != gameObject).First(); // item slot met de sprite zoeken
@@ -51,7 +53,7 @@ public abstract class Item : MonoBehaviour
 
     public virtual void IsSelected(bool isSelected)
     {
-        string imageName = string.Format("Sprites/{0}", isSelected ? "InventoryRed" : "InventoryBlack"); // inventory slot sprite zoeken
+        string imageName = string.Format("Sprites/{0}", isSelected ? BorderSelected : BorderUnselected); // inventory slot sprite zoeken
         Sprite image = Resources.Load<Sprite>(imageName); // inventory slot sprite laden
         GetComponent<Image>().sprite = image; // inventory slot sprite in de slot zetten
 
