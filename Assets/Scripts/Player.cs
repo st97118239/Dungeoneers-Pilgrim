@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public Menu menu;
     public Image attackProgressBar;
     public string itemTag;
-    public bool isDead = false;
+    public bool isPaused = false;
     public int totalCoins = 0;
     public float atkCooldown;
     public Checkpoints checkpoint;
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
             if (heartsActive.Count == 0)
             {
                 print("Player is dead!");
-                isDead = true;
+                isPaused = true;
                 deathScreen.SetActive(true);
                 menu.lockCursor = false;
                 menu.ResetCursor();

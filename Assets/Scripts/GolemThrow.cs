@@ -5,7 +5,7 @@ public class GolemThrow : MonoBehaviour
     public GameObject stonePrefab;
     public Transform throwPoint;
     public float throwForce = 10f;
-    public Vector3 offset = new Vector3(0f, 1.5f, 0f);
+    public Vector3 offset = new(0f, 1.5f, 0f);
     public float yArch = 0.7f;
 
     private Enemy enemyScript;

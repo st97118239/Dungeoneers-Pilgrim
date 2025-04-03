@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (!player.isDead)
+        if (!player.isPaused)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
                 ChangeSlot(0);

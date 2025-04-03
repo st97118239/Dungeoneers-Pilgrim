@@ -3,10 +3,35 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public GameObject pauseMenu;
     public bool lockCursor = false;
+
+    private Player player;
     void Start()
     {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.GetComponent<Player>();
+        }
+        
         ResetCursor();
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!pauseMenu.activeSelf)
+            {
+                PauseMenu();
+            }
+            else
+            {
+                ContinueButton();
+            }
+        }
     }
 
     public void ResetCursor()
@@ -21,6 +46,22 @@ public class Menu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+    }
+
+    public void PauseMenu()
+    {
+        pauseMenu.SetActive(true);
+        lockCursor = false;
+        ResetCursor();
+        player.isPaused = true;
+    }
+
+    public void ContinueButton()
+    {
+        pauseMenu.SetActive(false);
+        lockCursor = true;
+        ResetCursor();
+        player.isPaused = false;
     }
 
     public void PlayButton()
@@ -38,7 +79,7 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    public void ExitButton()
+    public void MainMenuButton()
     {
         SceneManager.LoadScene("StartScreen");
     }
