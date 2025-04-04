@@ -2,5 +2,8 @@
 {
     Spawn,
     Lantern,
-    AxeRoom
+    AxeRoom,
+    BarrelRoom,
+    HammerRoom,
+    EggRoom
 }
