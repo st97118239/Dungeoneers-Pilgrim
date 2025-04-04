@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public int coinAmount;
 
     private Player player;
+    private bool addedCoins = false;
 
     void Start()
     {
@@ -25,7 +26,11 @@ public class Enemy : MonoBehaviour
                 golemScript.isDead = true;
             }
 
-            player.AddCoins(coinAmount);
+            if (!addedCoins)
+            {
+                player.AddCoins(coinAmount);
+                addedCoins = true;
+            }
         }
     }
 
