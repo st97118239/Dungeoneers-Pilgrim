@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GolemThrow : MonoBehaviour
@@ -10,7 +11,9 @@ public class GolemThrow : MonoBehaviour
 
     private Enemy enemyScript;
     private GolemAI golemScript;
+    private readonly List<Stone> stonesThrown = new();
     private float cooldown;
+    private bool isPaused = false;
 
     void Start()
     {
@@ -21,19 +24,60 @@ public class GolemThrow : MonoBehaviour
 
     void Update()
     {
-        cooldown -= Time.deltaTime;
-
-        if (cooldown <= 0)
+        if (!Player.isPaused && !Player.isDead)
         {
-            cooldown = 0f;
+            cooldown -= Time.deltaTime;
 
-            golemScript.isThrowing = false;
+            if (cooldown <= 0)
+            {
+                cooldown = 0f;
+
+                golemScript.isThrowing = false;
+            }
         }
+
+        if (Player.isPaused && !isPaused)
+        {
+            Pause();
+        }
+        else if (!Player.isPaused && isPaused)
+        {
+            Unpause();
+        }
+    }
+
+    private void Unpause()
+    {
+        foreach (Stone stone in stonesThrown)
+        {
+            stone.ResumeStone();
+        }
+
+        isPaused = false;
+    }
+
+    private void Pause()
+    {
+        foreach (Stone stone in stonesThrown)
+        {
+            stone.PauseStone();
+        }
+
+        isPaused = true;
+    }
+
+    private void RemoveStone(Stone stone)
+    {
+        stonesThrown.Remove(stone);
     }
 
     public void ThrowStone(Vector3 targetPosition)
     {
         GameObject stone = Instantiate(stonePrefab, throwPoint.position + offset, Quaternion.identity);
+
+        Stone stoneComponent = stone.GetComponent<Stone>();
+        stoneComponent.DestroyFunc = RemoveStone;
+        stonesThrown.Add(stoneComponent);
 
         Vector3 direction = (targetPosition - throwPoint.position).normalized;
         direction.y += yArch;

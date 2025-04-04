@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    Rigidbody m_Rigidbody;
+    Rigidbody rb;
     public float m_Speed = 5f;
 
     public Vector3 rotateDir;
@@ -12,17 +12,15 @@ public class Movement : MonoBehaviour
     public float lookXLimit = 80.0f;
 
     private float pitch = 0f;
-    private Player player;
 
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
-        player = GetComponent<Player>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
-        if (!player.isPaused)
+        if (!Player.isPaused && !Player.isDead)
         {
             Vector3 m_Input = new(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -32,13 +30,13 @@ public class Movement : MonoBehaviour
             if (moveDirection.magnitude > 1)
                 moveDirection.Normalize();
 
-            m_Rigidbody.MovePosition(transform.position + m_Speed * Time.fixedDeltaTime * moveDirection);
+            rb.MovePosition(transform.position + m_Speed * Time.fixedDeltaTime * moveDirection);
         }
     }
 
     void Update()
     {
-        if (!player.isPaused)
+        if (!Player.isPaused && !Player.isDead)
         {
             rotateDir.y = Input.GetAxisRaw("Mouse X") * sensitivity;
             camRotate.x = -Input.GetAxisRaw("Mouse Y") * sensitivity;

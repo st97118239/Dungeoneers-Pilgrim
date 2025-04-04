@@ -23,7 +23,7 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!pauseMenu.activeSelf && !player.isDead)
+            if (!pauseMenu.activeSelf && !Player.isDead)
             {
                 PauseMenu();
             }
@@ -53,7 +53,7 @@ public class Menu : MonoBehaviour
         pauseMenu.SetActive(true);
         lockCursor = false;
         ResetCursor();
-        player.isPaused = true;
+        Player.isPaused = true;
     }
 
     public void ContinueButton()
@@ -61,7 +61,7 @@ public class Menu : MonoBehaviour
         pauseMenu.SetActive(false);
         lockCursor = true;
         ResetCursor();
-        player.isPaused = false;
+        Player.isPaused = false;
     }
 
     public void PlayButton()

@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Resources;
-using UnityEditor;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -124,7 +121,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (!player.isPaused) // menu check
+        if (!Player.isPaused) // menu check
         {
             // controleer alle numerieke toetsen of ze zijn ingedrukt en wijzig het inventory slot
             for (KeyCode key = KeyCode.Alpha0; key <= KeyCode.Alpha9; key++)

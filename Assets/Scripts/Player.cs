@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     public TMP_Text coinText; // het text object van munten
     public Menu menu; // het menu panel die te voorschijn komt wanneer je op esc drukt
     public Image attackProgressBar; // de image die te voorschijn komt wanneer je slaat
-    public bool isPaused = false; // bool voor het pauzeren
-    public bool isDead = false; // bool voor speler dood of niet
+    public static bool isPaused = false; // bool voor het pauzeren
+    public static bool isDead = false; // bool voor speler dood of niet
     public int totalCoins = 0; // totale aantal munten
     public float atkCooldown; // timer totdat de speler weer kan aanvallen
     public Checkpoints checkpoint; // checkpoint van de speler om makkelijk te testen
@@ -40,31 +40,34 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // timer voor de cooldown van aanvallen
-        atkCooldown -= Time.deltaTime;
-
-        if (atkCooldown < 0)
+        if (!isDead && !isPaused)
         {
-            atkCooldown = 0f;
+            // timer voor de cooldown van aanvallen
+            atkCooldown -= Time.deltaTime;
 
-            if (Input.GetMouseButtonDown(0))
+            if (atkCooldown < 0)
             {
+                atkCooldown = 0f;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (selectedItem != null && selectedItem.CompareTag("Weapon")) // check of de speler een wapen vast heeft
+                    {
+                        Attack();
+                    }
+                }
+                attackProgressBar.gameObject.SetActive(false); // zet de coolbar image uit wanneer vol
+
+                grabItem = false; // zet bool uit om te voorkomen dat de cooldown gehalveerd wordt
+            }
+            else
+            {
+                attackProgressBar.gameObject.SetActive(true); // zet de cooldown image weer aan
                 if (selectedItem != null && selectedItem.CompareTag("Weapon")) // check of de speler een wapen vast heeft
                 {
-                    Attack();
+                    int factor = grabItem ? 2 : 1; // zet de factor naar 2 als grabItem aan staat, anders 1
+                    attackProgressBar.fillAmount = 1 - atkCooldown / (selectedItem.GetComponent<Weapon>().atkspd / factor); // zet de cooldown image op de correcte hoeveelheid
                 }
-            }
-            attackProgressBar.gameObject.SetActive(false); // zet de coolbar image uit wanneer vol
-
-            grabItem = false; // zet bool uit om te voorkomen dat de cooldown gehalveerd wordt
-        }
-        else
-        {
-            attackProgressBar.gameObject.SetActive(true); // zet de cooldown image weer aan
-            if (selectedItem != null && selectedItem.CompareTag("Weapon")) // check of de speler een wapen vast heeft
-            {
-                int factor = grabItem ? 2 : 1; // zet de factor naar 2 als grabItem aan staat, anders 1
-                attackProgressBar.fillAmount = 1 - atkCooldown / (selectedItem.GetComponent<Weapon>().atkspd / factor); // zet de cooldown image op de correcte hoeveelheid
             }
         }
     }
