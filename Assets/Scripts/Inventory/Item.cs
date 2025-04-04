@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,15 +9,8 @@ public abstract class Item : MonoBehaviour
     public GameObject player;
     public GameObject droppedWeapons; // Empty GameObject waar wapens die gedropped worden heen gaan
 
-    private Camera mainCamera;
-
     protected abstract string BorderSelected { get; }
     protected abstract string BorderUnselected { get; }
-
-    private void Start()
-    {
-        mainCamera = Camera.main;
-    }
 
     // functie voor object oppakken
     public virtual void Pickup(GameObject itemToPickup)
@@ -38,17 +32,17 @@ public abstract class Item : MonoBehaviour
         x.color = Color.white; // kleur naar wit veranderen zodat de sprite zichtbaar wordt
 
         // kijken of het item een wapen is
-        if (TryGetComponent<Weapon>(out Weapon itemSlotWeapon))
+        if (item.TryGetComponent(out Weapon itemSlotWeapon))
         {
             itemSlotWeapon = item.GetComponent<Weapon>();
 
-            item.transform.SetParent(mainCamera.transform); // zet wapen in camera zodat het wapen meebeweegt met de speler
+            item.transform.SetParent(Camera.main.transform); // zet wapen in camera zodat het wapen meebeweegt met de speler
 
             item.transform.SetLocalPositionAndRotation(DefaultWeaponLocations.GetPosition(itemSlotWeapon.wpnType), DefaultWeaponLocations.GetRotation(itemSlotWeapon.wpnType)); // zet wapen positie goed
             item.transform.localScale = Vector3.one; // reset scale van wapen anders wordt de scale 1.6
 
             item.GetComponent<BoxCollider>().enabled = false; // box collider uit zodat het niet tegen muren botst
-        }        
+        }
     }
 
     public virtual void IsSelected(bool isSelected)

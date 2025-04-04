@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEditor;
@@ -35,6 +36,7 @@ public class Inventory : MonoBehaviour
 
     private void GiveDefaultWeapon()
     {
+        Debug.Log(defaultWeapon);
         PickupWeapon(defaultWeapon);
     }
 

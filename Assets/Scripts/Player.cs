@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,7 +19,9 @@ public class Player : MonoBehaviour
     public int totalCoins = 0;
     public float atkCooldown;
     public Checkpoints checkpoint;
-   
+
+    private bool grabItem;
+
     void Start()
     {
         for (int i = 0; i < hearts.Count; i++)
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour
         attackProgressBar.fillAmount = 0f;
         attackProgressBar.gameObject.SetActive(false);
     }
+
     void Update()
     {
         atkCooldown -= Time.deltaTime;
@@ -50,12 +54,17 @@ public class Player : MonoBehaviour
                 }
             }
             attackProgressBar.gameObject.SetActive(false);
+
+            grabItem = false;
         }
         else
         {
             attackProgressBar.gameObject.SetActive(true);
             if (selectedItem != null && selectedItem.CompareTag("Weapon"))
-                attackProgressBar.fillAmount = 1 - atkCooldown / selectedItem.GetComponent<Weapon>().atkspd;
+            {
+                int factor = grabItem ? 2 : 1;
+                attackProgressBar.fillAmount = 1 - atkCooldown / (selectedItem.GetComponent<Weapon>().atkspd / factor);
+            }
         }
     }
 
@@ -77,6 +86,7 @@ public class Player : MonoBehaviour
         itemTag = item.tag;
         if (selectedItem != null && item.CompareTag("Weapon"))
         {
+            grabItem = true;
             atkCooldown = selectedItem.GetComponent<Weapon>().atkspd;
         }
     }
