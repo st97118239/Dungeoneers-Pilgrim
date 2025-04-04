@@ -19,8 +19,18 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
+            if (enemyType == EnemyType.Golem)
+            {
+                GolemAI golemScript = GetComponent<GolemAI>();
+                golemScript.isDead = true;
+            }
+
             player.AddCoins(coinAmount);
-            Destroy(gameObject);
         }
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

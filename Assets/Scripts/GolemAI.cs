@@ -10,10 +10,12 @@ public class GolemAI : MonoBehaviour
     public float playerDetectionRange = 15f;
     public bool isActive = false;
     public bool isThrowing = false;
+    public bool isDead = false;
     public NavMeshAgent agent;
 
     private Transform player;
     private bool isFleeing = false;
+    private bool explosionPlayed = false;
 
     void Start()
     {
@@ -27,14 +29,25 @@ public class GolemAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer >= playerDetectionRange && isActive || player.GetComponent<Player>().isPaused)
+        if (distanceToPlayer >= playerDetectionRange && isActive || player.GetComponent<Player>().isPaused || isDead)
         {
             agent.isStopped = true;
             isActive = false;
         }
-        else if (distanceToPlayer < playerDetectionRange && !player.GetComponent<Player>().isPaused)
+        else if (distanceToPlayer < playerDetectionRange && !player.GetComponent<Player>().isPaused && !isDead)
         {
             isActive = true;
+        }
+
+        if (isDead && !explosionPlayed)
+        {
+            explosionPlayed = true;
+            ParticleSystem particle = GetComponentInChildren<ParticleSystem>();
+            particle.Play();
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
+            GetComponentInChildren<GolemDestroy>().StartCheck();
+
         }
 
         if (isActive)
