@@ -13,13 +13,25 @@ public class Player : MonoBehaviour
     public TMP_Text coinText; // het text object van munten
     public Menu menu; // het menu panel die te voorschijn komt wanneer je op esc drukt
     public Image attackProgressBar; // de image die te voorschijn komt wanneer je slaat
-    public static bool isPaused = false; // bool voor het pauzeren
-    public static bool isDead = false; // bool voor speler dood of niet
+    public static bool isPaused; // bool voor het pauzeren
+    public static bool isDead; // bool voor speler dood of niet
     public int totalCoins = 0; // totale aantal munten
     public float atkCooldown; // timer totdat de speler weer kan aanvallen
     public Checkpoints checkpoint; // checkpoint van de speler om makkelijk te testen
 
     private bool grabItem; // bool om cooldown the halveren als de speler naar het wapen switcht
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    static void AfterSceneLoaded()
+    {
+        isPaused = false;
+        isDead = false;
+    }
+
+    private void Awake()
+    {
+        AfterSceneLoaded();
+    }
 
     void Start()
     {
@@ -31,7 +43,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        transform.SetLocalPositionAndRotation(CheckpointLocations.GetPosition(checkpoint), CheckpointLocations.GetRotation(checkpoint)); // zet speler naar de checkpoint
 
         // zet de coolbar image op 0 en uit
         attackProgressBar.fillAmount = 0f;
