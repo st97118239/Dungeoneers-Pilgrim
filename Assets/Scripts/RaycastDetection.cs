@@ -70,6 +70,15 @@ public class RaycastDetection : MonoBehaviour
                     pickUpPromptText.gameObject.SetActive(false);
                 }
             }
+            else if (hit.collider.gameObject.CompareTag("Egg"))
+            {
+                pickUpPromptText.gameObject.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    
+                }
+            }
             else
             {
                 pickUpPromptText.gameObject.SetActive(false);

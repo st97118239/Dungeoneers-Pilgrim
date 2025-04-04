@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public List<GameObject> heartsActive = new(); // list van harten die de speler over heeft
     public GameObject selectedItem; // item die de speler geselecteerd heeft
     public GameObject deathScreen; // de panel die te voorschijn komt wanneer je dood gaat
+    public GameObject endScreen; // de panel die te voorschijn komt wanneer je klaar bent
     public TMP_Text coinText; // het text object van munten
     public Menu menu; // het menu panel die te voorschijn komt wanneer je op esc drukt
     public Image attackProgressBar; // de image die te voorschijn komt wanneer je slaat
@@ -146,5 +147,16 @@ public class Player : MonoBehaviour
     {
         totalCoins += coinAmountToAdd; // coins toevoegen aan totaal
         coinText.text = "" + totalCoins; // text die munten weergeeft updaten
+    }
+
+    // functie voor einde van het spel
+    public void TheEnd()
+    {
+        menu.ContinueButton(); // zet pauze menu uit zodat je niet twee menus tegelijk hebt
+        isPaused = true; // zet spel op pauze
+        isDead = true; // zet de speler op dood
+        endScreen.SetActive(true); // zet de dead screen aan
+        menu.lockCursor = false; // zet de cursor lock uit
+        menu.ResetCursor(); // zorg dat de cursor lock gerefreshed wordt
     }
 }
