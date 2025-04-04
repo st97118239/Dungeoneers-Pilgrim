@@ -76,7 +76,9 @@ public class RaycastDetection : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    
+                    Destroy(hit.collider.gameObject);
+                    pickUpPromptText.gameObject.SetActive(false);
+                    GetComponentInParent<Player>().TheEnd();
                 }
             }
             else

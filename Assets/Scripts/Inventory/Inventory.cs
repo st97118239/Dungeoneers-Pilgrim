@@ -124,12 +124,6 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        // alleen voor assessment om te laten zien dat de inventory dynamisch is
-        if (Input.GetKeyDown(KeyCode.K))
-            AddWeaponSlot();
-        if (Input.GetKeyDown(KeyCode.L))
-            AddSpecialSlot();
-
         if (!player.isPaused) // menu check
         {
             // controleer alle numerieke toetsen of ze zijn ingedrukt en wijzig het inventory slot
