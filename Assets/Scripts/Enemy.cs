@@ -29,9 +29,15 @@ public class Enemy : MonoBehaviour
             if (!addedCoins)
             {
                 addedCoins = true;
-                player.AddCoins(coinAmount);
 
-                player.AddHeart();
+                if (player.heartsActive.Count < player.hearts.Count)
+                {
+                    player.AddHeart();
+                }
+                else
+                    player.AddCoins(coinAmount);
+
+                
             }
         }
     }
