@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wpnType: 2
-  dmg: 7.5
+  dmg: 10
   atkspd: 3
   atkRange: 2
 --- !u!114 &-3471379788051745243
@@ -155,3 +155,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f491a49d0dee042b4eb40f922442d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDropped: 0
