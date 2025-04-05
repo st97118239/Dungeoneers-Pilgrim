@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
             }
         }
 
+        transform.SetLocalPositionAndRotation(CheckpointLocations.GetPosition(checkpoint), CheckpointLocations.GetRotation(checkpoint)); // zet speler naar checkpoint
 
         // zet de coolbar image op 0 en uit
         attackProgressBar.fillAmount = 0f;
