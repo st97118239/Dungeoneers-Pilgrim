@@ -28,8 +28,10 @@ public class Enemy : MonoBehaviour
 
             if (!addedCoins)
             {
-                player.AddCoins(coinAmount);
                 addedCoins = true;
+                player.AddCoins(coinAmount);
+
+                player.AddHeart();
             }
         }
     }
